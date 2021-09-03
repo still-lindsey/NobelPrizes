@@ -3,9 +3,7 @@
 
 //Mission
 //Using JavaScript in script.js, parse the Nobel Prize data to create an appealing webpage that displays the Nobel Prize winners. When you are getting started, it doesn’t need to look very pretty.
-function onlyUnique(value, index, self) {
-  return self.indexOf(value) === index; //self.indexOf only gets first index, so the function will only return true for the first matched value. This passes back to our result which produces an array w unique values
-}
+
 
 const arrayOfYearCategoryObjects = nobels["prizes"];
 
