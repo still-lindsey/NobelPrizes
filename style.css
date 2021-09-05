@@ -5,6 +5,27 @@ body{
   color: whitesmoke
 }
 
+#navbar{
+  display: flex;
+  justify-content: space-around;
+}
+
+button{
+  background-color: rgb(225,225,225,.01);
+  color: whitesmoke;
+  border: none;
+  border-top: 1px solid rgb(218,165,32);
+  border-bottom: 1px solid rgb(218,165,32);
+  cursor:pointer;
+  font-size: 20px;
+  margin:5px;
+  margin-left: 20px;
+  margin-right:20px;
+
+}
+
+
+
 h1{
   font-size: 75px;
   font-weight:bold;
@@ -18,9 +39,6 @@ h1{
 }
 
 .h2{
-  margin-left: 10px;
-  padding-left: 12%;
-  padding-right: 12%;
   text-align: center;
 }
 
@@ -30,11 +48,11 @@ h2{
   margin: 8%;
 }
 
-h2:after {
+.year:after {
     content: ""; /* This is necessary for the pseudo element to work. */ 
     display: block; /* This will put the pseudo element on its own line. */
     margin: 0 auto; /* This will center the border. */
-    width:30%; /* Change this to whatever width you want. */
+    width:50%; /* Change this to whatever width you want. */
     padding-top: 20px; /* This creates some space between the element and the border. */
     border-bottom: 4px solid rgb(218,165,32)
 ; /* This creates the border. Replace black with whatever color you want. */
@@ -57,3 +75,28 @@ a{
   color: whitesmoke;
   margin-bottom: 20px;
 }
+
+#content{
+  padding-left: 12%;
+  padding-right: 12%;
+  text-align: center;
+}
+
+.main-heading{
+  font-size: 75px;
+  font-weight:bold;
+  display: block;
+  margin:0 auto;
+  margin-top: 50px; 
+  text-align: center;
+  border-top: 4px solid rgb(218,165,32)
+;
+  border-bottom: 4px solid rgb(218,165,32)
+;
+
+}
+
+.hide{
+  display: none;
+}
+
