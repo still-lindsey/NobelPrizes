@@ -161,7 +161,7 @@ function displayAllPeopleAndMotivation(array, h3Array) {
             p.className = `people`;
             document.querySelectorAll("h3")[i].appendChild(p);
           } else if (
-            laureates[k]["motivation"] === laureates[k + 1]["motivation"] && laureates[k]["motivation"] !== laureates[k + 2]["motivation"]
+            typeof laureates[k + 2]["motivation"]!=="string"
          ) {
             let p = document.createElement("p");
             p.innerText = `${laureates[k]["firstname"]} ${
@@ -290,7 +290,7 @@ function displayWinnersByCategory(category) {
           p.className = `people`;
           document.getElementById(year).appendChild(p);
         } else if (
-          laureates[k]["motivation"] === laureates[k + 1]["motivation"] && laureates[k]["motivation"] !== laureates[k + 2]["motivation"]
+          typeof laureates[k + 2]["motivation"]!=="string"
         ) {
           let p = document.createElement("p");
           p.innerText = `${laureates[k]["firstname"]} ${
