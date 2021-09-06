@@ -160,7 +160,7 @@ function displayAllPeopleAndMotivation(array, h3Array) {
             p.innerText = `${laureates[k]["firstname"]} ${laureates[k]["surname"]} ${laureates[k]["motivation"]}`;
             p.className = `people`;
             document.querySelectorAll("h3")[i].appendChild(p);
-          } else if (
+          } else if (laureates[k+2]=== undefined ||
             laureates[k]["motivation"] === laureates[k + 1]["motivation"]
           ) {
             let p = document.createElement("p");
