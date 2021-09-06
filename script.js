@@ -161,7 +161,7 @@ function displayAllPeopleAndMotivation(array, h3Array) {
             p.className = `people`;
             document.querySelectorAll("h3")[i].appendChild(p);
           } else if (laureates[k+2]=== undefined ||
-            laureates[k]["motivation"] === laureates[k + 1]["motivation"]
+            laureates[k]["motivation"] !== laureates[k + 2]["motivation"]
           ) {
             let p = document.createElement("p");
             p.innerText = `${laureates[k]["firstname"]} ${
