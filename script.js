@@ -178,7 +178,7 @@ function displayAllPeopleAndMotivation(array, h3Array) {
               laureates[k]["surname"]
             }, ${laureates[k + 1]["firstname"]} ${
               laureates[k + 1]["surname"]
-            } and ${laureates[k + 2]["firstname"]} ${
+            } ,and ${laureates[k + 2]["firstname"]} ${
               laureates[k + 2]["surname"]
             } ${laureates[k]["motivation"]}`;
             p.className = `motivation`;
