@@ -290,8 +290,18 @@ function displayWinnersByCategory(category) {
           p.className = `people`;
           document.getElementById(year).appendChild(p);
         } else if (
-          laureates[k]["motivation"] === laureates[k + 1]["motivation"] === laureates[k + 2]["motivation"]
+          laureates[k]["motivation"] === laureates[k + 1]["motivation"]
         ) {
+          let p = document.createElement("p");
+          p.innerText = `${laureates[k]["firstname"]} ${
+            laureates[k]["surname"]
+          } and ${laureates[k + 1]["firstname"]} ${
+            laureates[k + 1]["surname"]
+          } ${laureates[k]["motivation"]}`;
+          p.className = `motivation`;
+          document.getElementById(year).appendChild(p);
+          k++;
+        } else {
           let p = document.createElement("p");
           p.innerText = `${laureates[k]["firstname"]} ${
             laureates[k]["surname"]
@@ -302,17 +312,7 @@ function displayWinnersByCategory(category) {
           } ${laureates[k]["motivation"]}`;
           p.className = `motivation`;
           document.yearDiv.appendChild(p);
-          k = k + 2
-        } else {
-          let p = document.createElement("p");
-          p.innerText = `${laureates[k]["firstname"]} ${
-            laureates[k]["surname"]
-          } and ${laureates[k + 1]["firstname"]} ${
-            laureates[k + 1]["surname"]
-          } ${laureates[k]["motivation"]}`;
-          p.className = `motivation`;
-          document.getElementById(year).appendChild(p);
-          k++;
+          k = k + 2;
         }
       }
       content.appendChild(yearDiv);
