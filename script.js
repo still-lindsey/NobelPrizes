@@ -20,32 +20,33 @@ cleanData(arrayOfYearCategoryObjects);
 
 //set divs to variable name
 
-const navbar=document.getElementById("navbar")
-const title=document.getElementById("title")
+const navbar = document.getElementById("navbar");
+const title = document.getElementById("title");
 const content = document.getElementById("content");
 
-
-
-
 //add navbar
-const cat=["Economics", "Peace", "Medicine", "Literature", "Chemistry", "Physics"]
+const cat = [
+  "Economics",
+  "Peace",
+  "Medicine",
+  "Literature",
+  "Chemistry",
+  "Physics",
+];
 
-function addNav(){
-  for(let item of cat){
-    let button= document.createElement("button");
-    button.innerText=item
-    button.id=item
-    button.className="nav"
-    button.setAttribute("id", item)
-    button.href=`#${item}`
-    navbar.appendChild(button)
-    
+function addNav() {
+  for (let item of cat) {
+    let button = document.createElement("button");
+    button.innerText = item;
+    button.id = item;
+    button.className = "nav";
+    button.setAttribute("id", item);
+    button.href = `#${item}`;
+    navbar.appendChild(button);
   }
 }
 
-addNav()
-
-
+addNav();
 
 function createH1() {
   let h1 = document.createElement("button");
@@ -62,6 +63,7 @@ function years(array) {
     let h2 = document.createElement("h2");
     let div = document.createElement("div");
     h2.innerText = object["year"];
+    h2.id = object["year"];
     h2.className = "year";
     div.className = "h2";
     div.appendChild(h2);
@@ -89,8 +91,6 @@ removeRepeated([].slice.call(document.body.querySelectorAll("h2")));
 removeRepeated([].slice.call(document.body.querySelectorAll("h2")));
 
 removeRepeated([].slice.call(document.body.querySelectorAll("h2")));
-
-
 
 //FINISHED
 function displayCategories(array, h2Array) {
@@ -124,14 +124,23 @@ displayCategories(
 
 const h3Array = [].slice.call(document.body.querySelectorAll("h3"));
 
+const h2Array = [].slice.call(document.body.querySelectorAll("h2"));
+
 //FINISHED
 function displayOverallMotivation(array, h3Array) {
+  console.log("running display motivation");
+  let year;
   for (let i = 0; i < h3Array.length; i++) {
     let category = h3Array[i].className; //name of cat
-    let year = h3Array[i].parentElement.innerText.split("\n")[0];
+    console.log(category);
+    console.log(i);
+    year = h3Array[i].parentElement.firstChild.innerHTML;
+    console.log(year); //problem area
     for (let j = 0; j < array.length; j++) {
       if (array[j]["category"] === category && array[j]["year"] === year) {
+        console.log(true);
         if (array[j]["overallMotivation"] !== undefined) {
+          console.log(true);
           let p = document.createElement("p");
           p.innerText = array[j]["overallMotivation"];
           p.className = `overall-motivation`;
@@ -147,7 +156,7 @@ displayOverallMotivation(arrayOfYearCategoryObjects, h3Array);
 function displayAllPeopleAndMotivation(array, h3Array) {
   for (let i = 0; i < h3Array.length; i++) {
     let category = h3Array[i].className; //name of cat
-    let year = h3Array[i].parentElement.innerText.split("\n")[0];
+    let year = h3Array[i].parentElement.firstChild.innerHTML;
     for (let j = 0; j < array.length; j++) {
       if (array[j]["category"] === category && array[j]["year"] === year) {
         let laureates = array[j]["laureates"];
@@ -160,9 +169,7 @@ function displayAllPeopleAndMotivation(array, h3Array) {
             p.innerText = `${laureates[k]["firstname"]} ${laureates[k]["surname"]} ${laureates[k]["motivation"]}`;
             p.className = `people`;
             document.querySelectorAll("h3")[i].appendChild(p);
-          } else if (
-            laureates[k]["motivation"] === laureates[k + 1]["motivation"]
-          ) {
+          } else if (laureates[k + 2] === undefined) {
             let p = document.createElement("p");
             p.innerText = `${laureates[k]["firstname"]} ${
               laureates[k]["surname"]
@@ -178,7 +185,7 @@ function displayAllPeopleAndMotivation(array, h3Array) {
               laureates[k]["surname"]
             }, ${laureates[k + 1]["firstname"]} ${
               laureates[k + 1]["surname"]
-            } and ${laureates[k + 2]["firstname"]} ${
+            }, and ${laureates[k + 2]["firstname"]} ${
               laureates[k + 2]["surname"]
             } ${laureates[k]["motivation"]}`;
             p.className = `motivation`;
@@ -198,24 +205,30 @@ displayAllPeopleAndMotivation(arrayOfYearCategoryObjects, h3Array);
 const buttons = document.getElementsByClassName("nav");
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener("click", () =>
-  displayWinnersByCategory(buttons[i].id)
+    displayWinnersByCategory(buttons[i].id)
   );
 }
-console.log(buttons)
-
-
+console.log(buttons);
 
 //not showing info under text
 const mainHead = document.getElementById("main-heading");
-mainHead.addEventListener("click", ()=>{
+mainHead.addEventListener("click", () => {
   clearContent();
   years(arrayOfYearCategoryObjects);
-  displayCategories(arrayOfYearCategoryObjects, [].slice.call(document.body.querySelectorAll("h2")));
-  displayOverallMotivation(arrayOfYearCategoryObjects, h3Array);
-  console.log(displayOverallMotivation(arrayOfYearCategoryObjects, h3Array));
-  displayAllPeopleAndMotivation(arrayOfYearCategoryObjects, h3Array)}
-)
+  removeRepeated([].slice.call(document.body.querySelectorAll("h2")));
 
+  removeRepeated([].slice.call(document.body.querySelectorAll("h2")));
+
+  removeRepeated([].slice.call(document.body.querySelectorAll("h2")));
+
+  displayCategories(
+    arrayOfYearCategoryObjects,
+    [].slice.call(document.body.querySelectorAll("h2"))
+  );
+  displayOverallMotivation(arrayOfYearCategoryObjects, h3Array);
+
+  displayAllPeopleAndMotivation(arrayOfYearCategoryObjects, h3Array);
+});
 
 //function to clear content area in order to only disaply info from one category
 function clearContent() {
@@ -224,15 +237,13 @@ function clearContent() {
 // A function that displays winners by category
 //NOT FINISHED
 function displayWinnersByCategory(category) {
-  console.log(category)
+  console.log(category);
   clearContent();
 
   let h2 = document.createElement("h2");
-  h2.innerText = `The Nobel Prize in ${
-    category
-  }`;
+  h2.innerText = `The Nobel Prize in ${category}`;
   content.appendChild(h2);
-  
+
   // Create a drop down list
   let select = document.createElement("select");
   select.id = "year-select";
@@ -240,24 +251,27 @@ function displayWinnersByCategory(category) {
   select.addEventListener("change", (e) => toggleYearFilter(e.target.value));
   let option = document.createElement("option");
   option.value = "all";
-  option.text = "All";
+  option.text = "All Years";
   select.appendChild(option);
 
   content.appendChild(select);
-  
+
   //Loop array of novels.prizes
   for (let i = 0; i < arrayOfYearCategoryObjects.length; i++) {
     //If category matches categoryName(a variable passed by button's id)
     //append it to <div id="content">
     //STUCK HERE
-    if (arrayOfYearCategoryObjects[i]["category"].toUpperCase() === category.toUpperCase()) {
-      console.log("here")
+    if (
+      arrayOfYearCategoryObjects[i]["category"].toUpperCase() ===
+      category.toUpperCase()
+    ) {
+      console.log("here");
       //== Year ==//
       // create <div> with class attributes & custom attribute
-      // year-div is div of year and 
+      // year-div is div of year and
       let yearDiv = document.createElement("div");
       yearDiv.setAttribute("class", "year-div");
-      yearDiv.id="yearDiv"
+      yearDiv.id = "yearDiv";
       yearDiv.setAttribute("data-year", arrayOfYearCategoryObjects[i]["year"]);
 
       content.appendChild(yearDiv);
@@ -266,11 +280,11 @@ function displayWinnersByCategory(category) {
       h3.setAttribute("class", "year");
       h3.innerText = `${arrayOfYearCategoryObjects[i].year}`;
       h3.id = `${arrayOfYearCategoryObjects[i].year}`;
-      
-      yearDiv.appendChild(h3);  
+
+      yearDiv.appendChild(h3);
 
       //Settings for drop down list
-    
+
       let select = document.querySelector("select");
       let option = document.createElement("option");
       option.value = arrayOfYearCategoryObjects[i]["year"];
@@ -279,7 +293,7 @@ function displayWinnersByCategory(category) {
 
       //Loop laureates and append them to <div id="content">
       let year = arrayOfYearCategoryObjects[i]["year"];
-      let laureates = nobels.prizes[i].laureates
+      let laureates = nobels.prizes[i].laureates;
       for (let k = 0; k < nobels.prizes[i].laureates.length; k++) {
         if (
           laureates[k + 1] === undefined ||
@@ -319,7 +333,6 @@ function displayWinnersByCategory(category) {
     }
   }
 }
-
 
 function toggleYearFilter(year) {
   if (year != "all") {
