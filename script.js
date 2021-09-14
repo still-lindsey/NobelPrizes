@@ -311,7 +311,7 @@ function displayWinnersByCategory(category) {
               laureates[k + 1]["surname"]
             } ${laureates[k]["motivation"]}`;
             p.className = `motivation`;
-            document.querySelectorAll("h3")[i].appendChild(p);
+            document.getElementById(year).appendChild(p);
             k++;
           } else {
             let p = document.createElement("p");
@@ -323,7 +323,7 @@ function displayWinnersByCategory(category) {
               laureates[k + 2]["surname"]
             } ${laureates[k]["motivation"]}`;
             p.className = `motivation`;
-            document.querySelectorAll("h3")[i].appendChild(p);
+            document.getElementById(year).appendChild(p);
             k = k + 2;
         }
       }
