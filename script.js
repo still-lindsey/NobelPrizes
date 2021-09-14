@@ -303,30 +303,28 @@ function displayWinnersByCategory(category) {
           p.innerText = `${laureates[k]["firstname"]} ${laureates[k]["surname"]} ${laureates[k]["motivation"]}`;
           p.className = `people`;
           document.getElementById(year).appendChild(p);
-        } else if (
-          laureates[k]["motivation"] === laureates[k + 1]["motivation"]
-        ) {
-          let p = document.createElement("p");
-          p.innerText = `${laureates[k]["firstname"]} ${
-            laureates[k]["surname"]
-          } and ${laureates[k + 1]["firstname"]} ${
-            laureates[k + 1]["surname"]
-          } ${laureates[k]["motivation"]}`;
-          p.className = `motivation`;
-          document.getElementById(year).appendChild(p);
-          k++;
-        } else {
-          let p = document.createElement("p");
-          p.innerText = `${laureates[k]["firstname"]} ${
-            laureates[k]["surname"]
-          }, ${laureates[k + 1]["firstname"]} ${
-            laureates[k + 1]["surname"]
-          } and ${laureates[k + 2]["firstname"]} ${
-            laureates[k + 2]["surname"]
-          } ${laureates[k]["motivation"]}`;
-          p.className = `motivation`;
-          document.yearDiv.appendChild(p);
-          k = k + 2;
+        }  else if (laureates[k + 2] === undefined) {
+            let p = document.createElement("p");
+            p.innerText = `${laureates[k]["firstname"]} ${
+              laureates[k]["surname"]
+            } and ${laureates[k + 1]["firstname"]} ${
+              laureates[k + 1]["surname"]
+            } ${laureates[k]["motivation"]}`;
+            p.className = `motivation`;
+            document.querySelectorAll("h3")[i].appendChild(p);
+            k++;
+          } else {
+            let p = document.createElement("p");
+            p.innerText = `${laureates[k]["firstname"]} ${
+              laureates[k]["surname"]
+            }, ${laureates[k + 1]["firstname"]} ${
+              laureates[k + 1]["surname"]
+            }, and ${laureates[k + 2]["firstname"]} ${
+              laureates[k + 2]["surname"]
+            } ${laureates[k]["motivation"]}`;
+            p.className = `motivation`;
+            document.querySelectorAll("h3")[i].appendChild(p);
+            k = k + 2;
         }
       }
       content.appendChild(yearDiv);
